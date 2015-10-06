@@ -84,6 +84,9 @@ class Season:
     def add_game(self, game):
         self._games.append(game)
 
+    def format_data(self):
+        return [self._passesattempted, self._passescompleted, self._passtouchdowns, self._passyards, self._passinterceptions, self._rushattempts, self._rushattempts, self._rushtouchdowns, self._receptions, self._receptionyards, self._receptiontouchdowns]
+
 
 class Game:
 
@@ -129,3 +132,7 @@ class Game:
 
     def year(self):
         return self._year
+
+    def dump_game_stats(self):
+        return [self._passescompleted,
+                self._passesattempted]
