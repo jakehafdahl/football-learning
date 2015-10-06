@@ -60,9 +60,6 @@ def train_linear_regression(train,target):
     model = model.fit(train, target)
     return model
 
-def normalize_matrices(X, y):
-    
-
 
 def run():
     players = data_parser.get_master_player_list()
