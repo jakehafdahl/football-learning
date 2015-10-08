@@ -70,19 +70,34 @@ def run():
     players_list = [value for (key, value) in built.iteritems()]
     data = format_player_data(players_list)
     #model = PolynomialSeason()
-    net = NeuralNetworkSeason(position="RB")
+    rbnet = NeuralNetworkSeason(position="RB")
+    wrnet = NeuralNetworkSeason(position="WR")
+    qbnet = NeuralNetworkSeason(position="QB")
+    tenet = NeuralNetworkSeason(position="TE")
 
-    train_data, train_target, test_data, test_target = partition_data(data['RB']['train'], data['RB']['target'])
+    rbtrain_data, rbtrain_target, rbtest_data, rbtest_target = partition_data(data['RB']['train'], data['RB']['target'])
+    wrtrain_data, wrtrain_target, wrtest_data, wrtest_target = partition_data(data['WR']['train'], data['WR']['target'])
+    qbrbtrain_data, qbtrain_target, qbtest_data, qbtest_target = partition_data(data['QB']['train'], data['QB']['target'])
+    terbtrain_data, tetrain_target, tetest_data, tetest_target = partition_data(data['TE']['train'], data['TE']['target'])
     
     #model.train(train_data, train_target)
-    net.train(train_data, train_target)
+    rbnet.train(rbtrain_data, rbtrain_target)
+    wrnet.train(wrtrain_data, wrtrain_target)
+    qbnet.train(qbtrain_data, qbtrain_target)
+    tenet.train(tetrain_data, tetrain_target)
 
     #avg = evaluate_model(test_data, test_target, model)
 
-    netavg = evaluate_model(test_data, test_target, net)
+    rbnetavg = evaluate_model(rbtest_data, rbtest_target, rbnet)
+    wrnetavg = evaluate_model(wrtest_data, wrtest_target, wrnet)
+    qbnetavg = evaluate_model(qbtest_data, qbtest_target, qbnet)
+    tenetavg = evaluate_model(tetest_data, tetest_target, tenet)
     
     #print("average errors for linear reg are %s" % avg)
-    print("average errors for neural net reg are %s" % netavg)
+    print("average errors for neural net RB reg are %s" % rbnetavg)
+    print("average errors for neural net WR reg are %s" % wrnetavg)
+    print("average errors for neural net QB reg are %s" % qbnetavg)
+    print("average errors for neural net TE reg are %s" % tenetavg)
 
 
 if __name__ == '__main__':

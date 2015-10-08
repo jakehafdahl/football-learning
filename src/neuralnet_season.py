@@ -25,8 +25,9 @@ def train_network(train,target):
 
 class NeuralNetworkSeason:
     """ """
-    def __init__(self, position=None,layers=1):
+    def __init__(self, position=None,layers=1, generate=False):
         self._layers = layers
+        self._generate = generate
         if position is None:
         	self._filename = 'neuralnets.xml'
         else:
@@ -34,8 +35,11 @@ class NeuralNetworkSeason:
 
 
     def train(self, X, y):
-        self._model = train_network(X, y)
-        NetworkWriter.writeToFile(self._model, self._filename)
+    	if self._generate:
+        	self._model = train_network(X, y)
+        	NetworkWriter.writeToFile(self._model, self._filename)
+        else:
+        	self._model = NetworkReader.readFrom(self._filename)
 
     def predict(self, x):
     	new_x = np.asarray(x).flatten()
