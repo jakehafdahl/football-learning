@@ -42,7 +42,8 @@ def combine_players_seasons_games_lists(players, seasons, games):
             season = next(season for season in players[game.id()].seasons() if season.year() == game.year())
             season.add_game(game)
         except StopIteration:
-            print("There are no seasons for %s" % players[game.id()].name())
+            pass
+            #print("There are no seasons for %s" % players[game.id()].name())
 
     return players
 
