@@ -47,7 +47,6 @@ def partition_data(data, target):
     eighty = sets * 8 / 10
     X = np.matrix(data)
     y = np.matrix(target)
-    print("eighty is %s" % eighty)
     return X[:eighty,:], y[:eighty,:], X[eighty:,:], y[eighty:,:]
 
 
@@ -77,8 +76,8 @@ def run():
 
     rbtrain_data, rbtrain_target, rbtest_data, rbtest_target = partition_data(data['RB']['train'], data['RB']['target'])
     wrtrain_data, wrtrain_target, wrtest_data, wrtest_target = partition_data(data['WR']['train'], data['WR']['target'])
-    qbrbtrain_data, qbtrain_target, qbtest_data, qbtest_target = partition_data(data['QB']['train'], data['QB']['target'])
-    terbtrain_data, tetrain_target, tetest_data, tetest_target = partition_data(data['TE']['train'], data['TE']['target'])
+    qbtrain_data, qbtrain_target, qbtest_data, qbtest_target = partition_data(data['QB']['train'], data['QB']['target'])
+    tetrain_data, tetrain_target, tetest_data, tetest_target = partition_data(data['TE']['train'], data['TE']['target'])
     
     #model.train(train_data, train_target)
     rbnet.train(rbtrain_data, rbtrain_target)
